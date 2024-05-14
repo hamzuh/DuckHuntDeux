@@ -1,0 +1,5 @@
+mockup a duck to show movement
+let mouse shoot hit duck
+implement ammo system
+show HUD
+create buy menu

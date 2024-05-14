@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://4xum7537hlcx"]
+
+[ext_resource type="Texture2D" uid="uid://cu1bf1f4qprrg" path="res://Art/Background/pinkbg.png" id="1_iy8bg"]
+[ext_resource type="Texture2D" uid="uid://c3uuiip643u0l" path="res://Art/Background/tree.png" id="2_s1u15"]
+[ext_resource type="Texture2D" uid="uid://dhqmkx7dfestw" path="res://Art/Background/ground.png" id="3_eev55"]
+[ext_resource type="Script" path="res://Scripts/Crosshair.gd" id="4_fe15o"]
+[ext_resource type="PackedScene" uid="uid://cnwncm1qsut5e" path="res://Scenes/Duck.tscn" id="4_qyv44"]
+[ext_resource type="Texture2D" uid="uid://ch1nhknq581kn" path="res://Art/UI/crosshair.png" id="4_ytlbu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwbn7"]
+size = Vector2(320, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2jj3"]
+size = Vector2(20, 188)
+
+[node name="BaseScreen" type="Node2D"]
+texture_filter = 1
+
+[node name="backgroundcolour" type="Sprite2D" parent="."]
+texture = ExtResource("1_iy8bg")
+
+[node name="tree" type="Sprite2D" parent="."]
+texture = ExtResource("2_s1u15")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_qyv44")]
+position = Vector2(0, 53)
+
+[node name="ground" type="Sprite2D" parent="."]
+texture = ExtResource("3_eev55")
+
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("4_fe15o")
+
+[node name="Sprite" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("4_ytlbu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -132)
+shape = SubResource("RectangleShape2D_uwbn7")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_uwbn7")
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-170, -26)
+shape = SubResource("RectangleShape2D_r2jj3")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(170, -26)
+shape = SubResource("RectangleShape2D_r2jj3")
