@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dryvsxiamvm67"
+path="res://.godot/imported/landing.wav-2ddf8324bd0976b0b87b5c6c6897a378.sample"
+
+[deps]
+
+source_file="res://Audio/Original Sound Effects/Duck/landing.wav"
+dest_files=["res://.godot/imported/landing.wav-2ddf8324bd0976b0b87b5c6c6897a378.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

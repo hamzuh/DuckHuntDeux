@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt44op5yenrcb"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Crosshair.gd" id="1_u14pt"]
+[ext_resource type="Texture2D" uid="uid://cunsr6fea8mpd" path="res://Art/UI/reticle.png" id="2_w470j"]
+[ext_resource type="AudioStream" uid="uid://bwjdc45dmaqbm" path="res://Audio/Original Sound Effects/Misc/shot.wav" id="3_knads"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rw3ss"]
+size = Vector2(8, 8)
+
+[node name="Gun" type="Area2D"]
+z_index = 2
+script = ExtResource("1_u14pt")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+texture = ExtResource("2_w470j")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rw3ss")
+disabled = true
+
+[node name="Boom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_knads")
+volume_db = -4.685
+pitch_scale = 1.2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

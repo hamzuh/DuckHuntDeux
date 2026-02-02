@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://4xum7537hlcx"]
+
+[ext_resource type="Script" path="res://Scripts/Top Scene.gd" id="1_0c3ts"]
+[ext_resource type="PackedScene" uid="uid://dqn8nehwdna10" path="res://Scenes/Level.tscn" id="1_65foa"]
+[ext_resource type="PackedScene" uid="uid://dt44op5yenrcb" path="res://Scenes/Gun.tscn" id="3_cm828"]
+[ext_resource type="PackedScene" uid="uid://cc8st4jq6xvbb" path="res://Scenes/HUD.tscn" id="4_nfeij"]
+
+[node name="Main Scene" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_0c3ts")
+
+[node name="Level" parent="." instance=ExtResource("1_65foa")]
+
+[node name="Gun" parent="." instance=ExtResource("3_cm828")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("4_nfeij")]
+
+[connection signal="game_starts" from="." to="." method="_on_game_starts"]

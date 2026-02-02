@@ -1,21 +1,201 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnwncm1qsut5e"]
+[gd_scene load_steps=18 format=3 uid="uid://cnwncm1qsut5e"]
 
-[ext_resource type="Script" path="res://Scripts/Duck.gd" id="1_e5o87"]
-[ext_resource type="Texture2D" uid="uid://kr452edsbm43" path="res://Art/Ducks/ducks.png" id="1_oql63"]
+[ext_resource type="Script" path="res://Scripts/Duck/Duck.gd" id="1_e5o87"]
+[ext_resource type="Texture2D" uid="uid://braitqa3yvupf" path="res://Art/Duck/duck_sheet.png" id="2_yl8wa"]
+[ext_resource type="AudioStream" uid="uid://cxtl7f1lhb25j" path="res://Audio/Original Sound Effects/Duck/wingflap.wav" id="3_4fa40"]
+[ext_resource type="Script" path="res://Scripts/Duck/State Machine.gd" id="3_wk32a"]
+[ext_resource type="Script" path="res://Scripts/Duck/States/Flying.gd" id="4_gv3sk"]
+[ext_resource type="Script" path="res://Scripts/Duck/States/Hit.gd" id="5_w8y6p"]
+[ext_resource type="Script" path="res://Scripts/Duck/States/Falling.gd" id="6_3b6xl"]
+[ext_resource type="AudioStream" uid="uid://bpjpewwq55m55" path="res://Audio/Original Sound Effects/Duck/quack.wav" id="8_abuob"]
+[ext_resource type="AudioStream" uid="uid://cerjhoa1gwlqi" path="res://Audio/Original Sound Effects/Duck/falling.wav" id="8_mhycv"]
+[ext_resource type="AudioStream" uid="uid://dryvsxiamvm67" path="res://Audio/Original Sound Effects/Duck/landing.wav" id="9_85wme"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyhsf"]
-size = Vector2(27, 31)
+[sub_resource type="Animation" id="Animation_nmuv5"]
+resource_name = "Falling"
+length = 0.20001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [7, 8]
+}
 
-[node name="Duck" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_g7bf7"]
+resource_name = "Flying Horizontal"
+length = 0.266673
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.964931,
+"start_offset": 0.017,
+"stream": ExtResource("3_4fa40")
+}, {
+"end_offset": 0.963357,
+"start_offset": 0.017,
+"stream": ExtResource("3_4fa40")
+}],
+"times": PackedFloat32Array(0.0666667, 0.2)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_tmxjg"]
+resource_name = "Flying Vertical"
+length = 0.266673
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.959365,
+"start_offset": 0.017,
+"stream": ExtResource("3_4fa40")
+}, {
+"end_offset": 0.956964,
+"start_offset": 0.017,
+"stream": ExtResource("3_4fa40")
+}],
+"times": PackedFloat32Array(0.0666667, 0.2)
+}
+tracks/1/use_blend = false
+
+[sub_resource type="Animation" id="Animation_i24kx"]
+resource_name = "Hit"
+length = 0.666673
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_5xpxe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngjj7"]
+_data = {
+"Falling": SubResource("Animation_nmuv5"),
+"Flying Horizontal": SubResource("Animation_g7bf7"),
+"Flying Vertical": SubResource("Animation_tmxjg"),
+"Hit": SubResource("Animation_i24kx"),
+"RESET": SubResource("Animation_5xpxe")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj157"]
+size = Vector2(28, 28)
+
+[node name="Duck" type="CharacterBody2D" groups=["Duck"]]
 texture_filter = 1
 script = ExtResource("1_e5o87")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_oql63")
+texture = ExtResource("2_yl8wa")
 flip_h = true
-region_enabled = true
+hframes = 3
+vframes = 3
 region_rect = Rect2(1, 1, 27, 31)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_uyhsf")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ngjj7")
+}
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gj157")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = ExtResource("3_wk32a")
+start_state = NodePath("Flying")
+
+[node name="Flying" type="Node" parent="State Machine" node_paths=PackedStringArray("hit_state")]
+script = ExtResource("4_gv3sk")
+hit_state = NodePath("../Hit")
+animation_name = "Flying Vertical"
+
+[node name="Hit" type="Node" parent="State Machine" node_paths=PackedStringArray("falling_state")]
+script = ExtResource("5_w8y6p")
+falling_state = NodePath("../Falling")
+animation_name = "Hit"
+
+[node name="Falling" type="Node" parent="State Machine"]
+script = ExtResource("6_3b6xl")
+animation_name = "Falling"
+
+[node name="Wings" type="AudioStreamPlayer" parent="."]
+volume_db = -8.117
+pitch_scale = 5.0
+
+[node name="Quack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_abuob")
+
+[node name="Falling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_mhycv")
+
+[node name="Landing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_85wme")
+volume_db = -9.167
+
+[connection signal="animation_finished" from="AnimationPlayer" to="State Machine/Hit" method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="Landing" to="State Machine/Falling" method="_on_landing_finished"]

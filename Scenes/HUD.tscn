@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc8st4jq6xvbb"]
+
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_eaids"]
+[ext_resource type="LabelSettings" uid="uid://dmeis88v6sbkl" path="res://Resources/NES Font.tres" id="2_lqw3f"]
+[ext_resource type="AudioStream" uid="uid://bx3sxr60r124h" path="res://Audio/Original Sound Effects/Misc/Round Start.wav" id="3_jp386"]
+[ext_resource type="AudioStream" uid="uid://c0fibdwbeqpro" path="res://Audio/Original Sound Effects/Misc/Round End.wav" id="4_o8kss"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_eaids")
+
+[node name="Text" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 44.0
+grow_horizontal = 2
+label_settings = ExtResource("2_lqw3f")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = ExtResource("2_lqw3f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Round Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jp386")
+volume_db = -3.747
+
+[node name="Round End" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_o8kss")
+volume_db = -3.748

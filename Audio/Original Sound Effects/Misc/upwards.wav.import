@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bk0symaqmlqci"
+path="res://.godot/imported/upwards.wav-6548ed1f6fb3a5319640757d46321f49.sample"
+
+[deps]
+
+source_file="res://Audio/Original Sound Effects/Misc/upwards.wav"
+dest_files=["res://.godot/imported/upwards.wav-6548ed1f6fb3a5319640757d46321f49.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
